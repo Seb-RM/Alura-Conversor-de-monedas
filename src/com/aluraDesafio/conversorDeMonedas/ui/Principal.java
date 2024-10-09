@@ -1,6 +1,7 @@
 package com.aluraDesafio.conversorDeMonedas.ui;
 
 import com.aluraDesafio.conversorDeMonedas.api.ApiClient;
+import com.aluraDesafio.conversorDeMonedas.api.ApiResponse;
 
 public class Principal {
 
@@ -8,10 +9,13 @@ public class Principal {
 
         ApiClient apiClient = new ApiClient();
 
-        String resultado = apiClient.obtenerTasasDeCambio();
+        String monedaBase = "EUR";
+        String monedaDestino = "GBP";
 
-        if (resultado != null) {
-            System.out.println("Datos de la API: " + resultado);
+        ApiResponse conversion = apiClient.obtenerTasaDeConversion(monedaBase, monedaDestino);
+
+        if (conversion != null && "success".equals(conversion.getResult())) {
+            System.out.println("Tasa de conversión de " + conversion.getBaseCode() + " a " + conversion.getTargetCode() + ": " + conversion.getConversionRate());
         } else {
             System.out.println("Error al obtener los datos de la API.");
         }

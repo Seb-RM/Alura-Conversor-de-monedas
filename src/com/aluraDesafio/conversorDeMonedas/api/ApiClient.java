@@ -1,5 +1,7 @@
 package com.aluraDesafio.conversorDeMonedas.api;
 
+import com.google.gson.Gson;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URI;
@@ -24,9 +26,9 @@ public class ApiClient {
         }
     }
 
-    public String obtenerTasasDeCambio() {
+    public ApiResponse obtenerTasaDeConversion(String monedaBase, String monedaDestino) {
 
-        String url = API_URL  + apiKey + "/latest/USD";
+        String url = API_URL + apiKey + "/pair/" + monedaBase + "/" + monedaDestino;;
 
         URI direccion = URI.create(url);
 
@@ -40,7 +42,9 @@ public class ApiClient {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             if (response.statusCode() == 200) {
-                return response.body();
+                Gson gson = new Gson();
+                ApiResponse conversionResponse = gson.fromJson(response.body(), ApiResponse.class);
+                return conversionResponse;
             } else {
                 System.out.println("Error en la solicitud, estado: " + response.statusCode());
             }
