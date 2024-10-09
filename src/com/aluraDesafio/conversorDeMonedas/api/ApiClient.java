@@ -54,4 +54,19 @@ public class ApiClient {
 
         return null;
     }
+
+    public double convertirMoneda(String monedaBase, String monedaDestino, double monto) {
+
+        ApiResponse response = obtenerTasaDeConversion(monedaBase, monedaDestino);
+
+        if (response != null && "success".equals(response.getResult())) {
+
+            double tasaDeConversion = response.getConversionRate();
+            return monto * tasaDeConversion;
+        } else {
+            System.out.println("No se pudo obtener la tasa de conversión.");
+        }
+
+        return 0.0; // Valor retornado en caso de error
+    }
 }

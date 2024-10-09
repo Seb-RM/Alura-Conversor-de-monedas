@@ -9,15 +9,16 @@ public class Principal {
 
         ApiClient apiClient = new ApiClient();
 
-        String monedaBase = "EUR";
-        String monedaDestino = "GBP";
+        double monto = 100.0;
+        String monedaBase = "USD";
+        String monedaDestino = "EUR";
 
-        ApiResponse conversion = apiClient.obtenerTasaDeConversion(monedaBase, monedaDestino);
+        double resultado = apiClient.convertirMoneda(monedaBase, monedaDestino, monto);
 
-        if (conversion != null && "success".equals(conversion.getResult())) {
-            System.out.println("Tasa de conversión de " + conversion.getBaseCode() + " a " + conversion.getTargetCode() + ": " + conversion.getConversionRate());
+        if (resultado > 0) {
+            System.out.println(monto + " " + monedaBase + " son " + resultado + " " + monedaDestino);
         } else {
-            System.out.println("Error al obtener los datos de la API.");
+            System.out.println("No se pudo realizar la conversión.");
         }
     }
 }
