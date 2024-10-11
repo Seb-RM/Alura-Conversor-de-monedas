@@ -30,7 +30,7 @@ public class CurrencyConverterApp {
 
     public void iniciar() {
         System.out.println("*".repeat(40));
-        System.out.println("Bienvenido al conversor de monedas");
+        System.out.println("Bienvenido al Conversor de Monedas");
         System.out.println("*".repeat(40));
         while (true) {
             System.out.println("\n" + "=".repeat(40));
@@ -38,13 +38,16 @@ public class CurrencyConverterApp {
             System.out.println("1. Convertir moneda");
             System.out.println("2. Salir");
             System.out.println("=".repeat(40));
+            System.out.print("\n* Ingresa el número de tu elección: ");
             int opcion = scanner.nextInt();
 
             if (opcion == 1) {
                 convertirMoneda();
             } else if (opcion == 2) {
-                System.out.println("*".repeat(40));
-                System.out.println("¡Hasta luego!");
+                System.out.println("\n" + "*".repeat(40));
+                System.out.println("* ¡Gracias por usar el Conversor de Monedas!");
+                System.out.println("* Esperamos que te haya servido.");
+                System.out.println("* ¡Hasta luego!");
                 System.out.println("*".repeat(40));
                 break;
             } else {
@@ -60,8 +63,9 @@ public class CurrencyConverterApp {
         String monedaBase = seleccionarMoneda("base", null);
         String monedaDestino = seleccionarMoneda("destino", monedaBase);
 
-        System.out.print("Ingresa el monto a convertir: ");
+        System.out.print("\n¿Cuánto deseas convertir? ");
         System.out.println("\n" + "=".repeat(40));
+        System.out.print("Ingresa el monto: ");
         double monto = scanner.nextDouble();
 
         ApiClient apiClient = new ApiClient();
@@ -71,7 +75,8 @@ public class CurrencyConverterApp {
             double tasa = respuesta.getConversionRate();
             double montoConvertido = monto * tasa;
             System.out.println("\n" + "*".repeat(40));
-            System.out.printf("Monto convertido: %.2f %s\n", montoConvertido, monedaDestino);
+            System.out.println("* Resultado de la conversión:");
+            System.out.printf("* %.2f %s equivalen a %.2f %s\n", monto, monedaBase, montoConvertido, monedaDestino);
             System.out.println("*".repeat(40));
         } else {
             System.out.println("\n" + "*".repeat(40));
@@ -83,9 +88,9 @@ public class CurrencyConverterApp {
     private String seleccionarMoneda(String tipo, String monedaExcluida) {
         System.out.println("\n" + "=".repeat(40));
         if (tipo.equals("base")) {
-            System.out.println("Selecciona la primera moneda:");
+            System.out.println("* Elige la primera moneda (origen):");
         } else {
-            System.out.println("Selecciona la moneda de destino:");
+            System.out.println("* Elige la moneda a la que quieres convertir:");
         }
 
         for (Map.Entry<Integer, String> entry : monedasDisponibles.entrySet()) {
@@ -96,6 +101,7 @@ public class CurrencyConverterApp {
             }
         }
         System.out.println("=".repeat(40));
+        System.out.print("\n* Ingresa el número de tu elección: ");
         int seleccion = scanner.nextInt();
         String monedaSeleccionada = obtenerCodigoMoneda(seleccion);
 
@@ -105,6 +111,8 @@ public class CurrencyConverterApp {
             System.out.println("*".repeat(40));
             return seleccionarMoneda(tipo, monedaExcluida);
         }
+
+        System.out.println("* Has seleccionado: " + monedaSeleccionada);
         System.out.println("=".repeat(40));
         return monedaSeleccionada;
     }
