@@ -2,6 +2,8 @@ package com.aluraDesafio.conversorDeMonedas.ui;
 
 import com.aluraDesafio.conversorDeMonedas.api.ApiClient;
 import com.aluraDesafio.conversorDeMonedas.api.ApiResponse;
+import com.aluraDesafio.conversorDeMonedas.modelos.ConversionHistory;
+import com.aluraDesafio.conversorDeMonedas.modelos.ConversionRecord;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,35 +29,57 @@ public class CurrencyConverterApp {
     }
 
     private Scanner scanner = new Scanner(System.in);
+    private static final ConversionHistory historial = new ConversionHistory();
+    private static final ApiClient apiClient = new ApiClient();
 
     public void iniciar() {
+
         System.out.println("*".repeat(40));
         System.out.println("Bienvenido al Conversor de Monedas");
         System.out.println("*".repeat(40));
-        while (true) {
-            System.out.println("\n" + "=".repeat(40));
-            System.out.println("Seleccione una opción:");
-            System.out.println("1. Convertir moneda");
-            System.out.println("2. Salir");
-            System.out.println("=".repeat(40));
-            System.out.print("\n* Ingresa el número de tu elección: ");
+
+        boolean continuar = true;
+
+        while (continuar) {
+
+            mostrarMenuPrincipal();
             int opcion = scanner.nextInt();
 
-            if (opcion == 1) {
-                convertirMoneda();
-            } else if (opcion == 2) {
-                System.out.println("\n" + "*".repeat(40));
-                System.out.println("* ¡Gracias por usar el Conversor de Monedas!");
-                System.out.println("* Esperamos que te haya servido.");
-                System.out.println("* ¡Hasta luego!");
-                System.out.println("*".repeat(40));
-                break;
-            } else {
-                System.out.println("*".repeat(40));
-                System.out.println("Opción no válida, intenta de nuevo.");
-                System.out.println("*".repeat(40));
+            switch (opcion) {
+                case 1:
+                    convertirMoneda();
+                    break;
+                case 2:
+                    historial.mostrarHistorial();
+                    break;
+                case 3:
+                    historial.limpiarHistorial();
+                    break;
+                case 4:
+                    continuar = false;
+                    System.out.println("\n" + "*".repeat(40));
+                    System.out.println("* ¡Gracias por usar el Conversor de Monedas!");
+                    System.out.println("* Esperamos que te haya servido.");
+                    System.out.println("* ¡Hasta luego!");
+                    System.out.println("*".repeat(40));
+                    break;
+                default:
+                    System.out.println("*".repeat(40));
+                    System.out.println("Opción no válida, intenta de nuevo.");
+                    System.out.println("*".repeat(40));
             }
         }
+    }
+
+    private static void mostrarMenuPrincipal() {
+        System.out.println("\n" + "=".repeat(40));
+        System.out.println("Seleccione una opción:");
+        System.out.println("1. Convertir moneda");
+        System.out.println("2. Ver historial de conversiones");
+        System.out.println("3. Limpiar historial");
+        System.out.println("4. Salir");
+        System.out.println("=".repeat(40));
+        System.out.print("Selecciona una opción: ");
     }
 
     private void convertirMoneda() {
@@ -78,6 +102,10 @@ public class CurrencyConverterApp {
             System.out.println("* Resultado de la conversión:");
             System.out.printf("* %.2f %s equivalen a %.2f %s\n", monto, monedaBase, montoConvertido, monedaDestino);
             System.out.println("*".repeat(40));
+
+            ConversionRecord conversion = new ConversionRecord( monedaBase, monedaDestino, monto, montoConvertido );
+            historial.agregarConversion(conversion);
+
         } else {
             System.out.println("\n" + "*".repeat(40));
             System.out.println("No se pudo obtener la tasa de conversión.");
