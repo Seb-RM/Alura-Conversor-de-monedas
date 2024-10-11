@@ -11,7 +11,6 @@ public class ConversionRecord {
     private double montoConvertido;
     private LocalDateTime fechaHora;
 
-    // Constructor
     public ConversionRecord(String monedaBase, String monedaDestino, double montoOriginal, double montoConvertido) {
         this.monedaBase = monedaBase;
         this.monedaDestino = monedaDestino;
