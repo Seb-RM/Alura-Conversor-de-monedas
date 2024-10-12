@@ -3,16 +3,14 @@
 El Conversor de Monedas es una aplicación de consola desarrollada en Java que permite realizar conversiones entre diferentes monedas utilizando tasas de cambio en tiempo real a través de la API de ExchangeRate. La aplicación ofrece una interfaz interactiva que facilita la selección de monedas y el ingreso de montos, brindando a los usuarios una experiencia simple y fluida. Además, la aplicación guarda un historial de conversiones con marcas de tiempo, permitiendo a los usuarios consultar y gestionar sus conversiones recientes.
 ## Índice
 
-1. Características
-2. Estructura del Proyecto
-3. Requisitos
-4. Dependencias
-5. Uso
-6. Instalación
-7. Uso
-8. Ejemplo de Uso
-9. Créditos
-
+- [Características](#características)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Requisitos](#Requisitos)
+- [Dependencias](#dependencias)
+- [Instalación](#instalación)
+- [Uso](#uso)
+- [Ejemplo de Uso](#ejemplo-de-uso)
+- [Créditos](#créditos)
 
 ## Características
 * Conversión de monedas en tiempo real: Conecta con la API de ExchangeRate para obtener las tasas de conversión actualizadas.
