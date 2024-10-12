@@ -100,6 +100,7 @@ public class CurrencyConverterApp {
             System.out.println("\n" + "*".repeat(40));
             System.out.println("* Resultado de la conversión:");
             System.out.printf("* %.2f %s equivalen a %.2f %s\n", monto, monedaBase, montoConvertido, monedaDestino);
+            System.out.printf("* Tasa de conversión: 1 %s = %.4f %s%n", monedaBase, tasa, monedaDestino);
             System.out.println("*".repeat(40));
 
             ConversionRecord conversion = new ConversionRecord( monedaBase, monedaDestino, monto, montoConvertido );
