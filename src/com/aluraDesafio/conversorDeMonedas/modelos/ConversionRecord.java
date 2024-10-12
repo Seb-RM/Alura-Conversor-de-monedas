@@ -16,10 +16,9 @@ public class ConversionRecord {
         this.monedaDestino = monedaDestino;
         this.montoOriginal = montoOriginal;
         this.montoConvertido = montoConvertido;
-        this.fechaHora = LocalDateTime.now(); // Registrar la hora actual
+        this.fechaHora = LocalDateTime.now();
     }
 
-    // Métodos para acceder a los datos
     public String getMonedaBase() {
         return monedaBase;
     }
@@ -38,7 +37,7 @@ public class ConversionRecord {
 
     public String getFechaHora() {
         // Formatear la fecha y hora de manera legible
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         return fechaHora.format(formatter);
     }
 

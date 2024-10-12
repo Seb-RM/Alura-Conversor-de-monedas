@@ -39,9 +39,4 @@ public class ConversionHistory {
         System.out.println("Historial de conversiones eliminado.");
         System.out.println("*".repeat(40));
     }
-
-    // obtener el número total de conversiones realizadas
-    public int obtenerTotalConversiones() {
-        return historial.size();
-    }
 }

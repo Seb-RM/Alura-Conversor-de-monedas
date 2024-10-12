@@ -30,7 +30,6 @@ public class CurrencyConverterApp {
 
     private Scanner scanner = new Scanner(System.in);
     private static final ConversionHistory historial = new ConversionHistory();
-    private static final ApiClient apiClient = new ApiClient();
 
     public void iniciar() {
 
@@ -153,10 +152,4 @@ public class CurrencyConverterApp {
         }
         return null;
     }
-
-    public static void main(String[] args) {
-        CurrencyConverterApp app = new CurrencyConverterApp();
-        app.iniciar();
-    }
-
 }
