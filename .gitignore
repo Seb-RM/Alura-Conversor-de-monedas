@@ -32,3 +32,4 @@ bin/
 ### Variables de entorno ###
 src/config.properties
 
+/.idea/
