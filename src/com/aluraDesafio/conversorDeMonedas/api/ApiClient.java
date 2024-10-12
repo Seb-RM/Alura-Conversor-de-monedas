@@ -28,7 +28,7 @@ public class ApiClient {
 
     public ApiResponse obtenerTasaDeConversion(String monedaBase, String monedaDestino) {
 
-        String url = API_URL + apiKey + "/pair/" + monedaBase + "/" + monedaDestino;;
+        String url = API_URL + apiKey + "/pair/" + monedaBase + "/" + monedaDestino;
 
         URI direccion = URI.create(url);
 
